@@ -1,56 +1,53 @@
 # Getting Started with Create Dynamic form
 
-This project has two parts one is dynamic form generation in react and type script and there is a server folder which has node.js server to 
-serve files. Please make sure you have switched to node v16.14.0.
+This project consists of two parts - one is the dynamic form generation in React and TypeScript, and the other is a Node.js server to serve files. Before running this project, make sure to switch to Node v16.14.0.
 
 ## Available Scripts
 
+In the project directory, you can run node index.js to start the server. By default, the server will run on http://localhost:3000. Before running this project, navigate to the server folder and run the npm install command to download the required libraries to run the Node.js backend server.
 
-In the project directory, you can run: node index.js to serve server for you server will run on http://localhost:3000 by defaul. Before running this project you have to navigate to server folder and you should have to run npm install cammand which will download the required libraries to run node.js backend server.
 
 ### `Mock server api end points`
 
-Once you will run the server you have access to following apis:
+After running the server, you will have access to the following APIs:
 
-1. http://localhost:3000/login
+1. http://localhost:3000/login - This API assigns a JWT token based on the request, which will be attached to all subsequent API calls as a bearer token.
 
-Login api will assign a JWT token based on the request and all other apis will attach this token to the api call as a barer tokem.
+2. http://localhost:3000/getFormJson - This endpoint provides the JSON required to generate the dynamic form.
 
-2. http://localhost:3000/getFormJson
+3. http://localhost:3000/submit - Once the user fills out the form, they can submit the data as a payload through a POST request.
 
-This end point will automatically provide a json that is required to generate the dynamic form.
-
-3. http://localhost:3000/submit
-
-Once user will fill the form he can submit the data as a payload it is post request.
-
-4. http://localhost:3000/getdata
-
-Get data api request can retrieve the data that is submitted by the user.
+4. http://localhost:3000/getdata - This API retrieves the data submitted by the user.
 
 ### `Dynamic form APP`
 
-This app is fully designed to generate the form based on the json provided by the server.
+This app is designed to generate a form based on the JSON provided by the server. There are three main parts of the dynamic form:
 
-There is 3 main parts of the dynamic form one is making input fields based on json provided by the server.
-1. Validations on input fileds are done by Yup library which is very poplular and powerful for applying validations.
-2. The skeleton of the form is crearted with help of Formik which is very very powerful and usefull for this kind of work.
-3. Typescript is used to track interface of the application.
-4. Routs are created with help of react router dom library.
-5. Locals are done with help of i18n library
+1. Input fields are generated based on the JSON provided by the server.
+2. Input field validations are performed using the Yup library.
+3. The skeleton of the form is created with the help of Formik, which is useful for this kind of work.
+4. TypeScript is used to track the interface of the application.
+5. Routes are created with the help of the react-router-dom library.
+6. Locales are handled with the i18n library.
 
 ### `How to run it.`
 
-Navigate to the root directory of this app and run npm install cammand. This cammand will install a required libraries run this application.
-
-Once this app is up and running you will see the login page. Please input the following username and password.
+To run the app, navigate to the root directory of this app and run the npm install command to install the required libraries. Once the app is up and running, you will see the login page. Input the following username and password to log in:
 
 username: test@test.com
 password: test
 
 ### `Tests`
 
-Fort unite test please run the below cammand to  run the tests.
+To run unit tests, run the command npm test. 
 
 npm test
+
+### `Deployment`
+
+Deployment is straightforward with Docker. This application has a Dockerfile that helps to create a Docker image. To deploy the app:
+
+1. Run the command docker build -t assignment to create a Docker image.
+2. Run the command docker tag assignment visiostudio1/assignment to tag the Docker image.
+3. Upload the image on the server, and then pull that image on AWS or any other server and run it inside of Docker using the command docker push visiostudio1/assignment.
 
