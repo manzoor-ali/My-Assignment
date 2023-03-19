@@ -32,3 +32,21 @@
   padding: 20px;
   font-size: 13px;
 }
+.progressbar {
+  border: #019688;
+  border-radius: 20px;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  .inner-steps {
+    background: #ccc;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 10px;
+    width: 100%;
+  }
+  .completed {
+    background: #019688;
+  }
+}

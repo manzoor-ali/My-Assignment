@@ -4,6 +4,7 @@ import Registrationform from "./registration-form";
 import ThanksForSubmissionMessage from "./thanks-for-submittion-message";
 import { FormJsonTypes } from "../interface/FormJson";
 import "./left-section.scss";
+import ProgressBar from "../../common/ProgressBar";
 
 export interface Props {
   mainData: FormJsonTypes.RootObject[];
@@ -37,6 +38,12 @@ const LeftSection: React.FC<Props> = ({ mainData }) => {
 
   return (
     <div className="left-section" style={colors} key={layoutId}>
+      <ProgressBar
+        steps={{
+          isformvisible: !isVisibleFillForm,
+          isformsubmitted: isFormSubmitted,
+        }}
+      />
       {!isVisibleFillForm ? (
         <FillFormMessage
           proceedToForm={setFormVisibilityState}

@@ -33,11 +33,11 @@ Get data api request can retrieve the data that is submitted by the user.
 This app is fully designed to generate the form based on the json provided by the server.
 
 There is 3 main parts of the dynamic form one is making input fields based on json provided by the server.
-Validations on input fileds are done by Yup library which is very poplular and powerful for applying validations.
-The skeleton of the form is crearted with help of Formik which is very very powerful and usefull for this kind of work.
-Typescript is used to track interface of the application.
-Routs are created with help of react router dom library.
-
+1. Validations on input fileds are done by Yup library which is very poplular and powerful for applying validations.
+2. The skeleton of the form is crearted with help of Formik which is very very powerful and usefull for this kind of work.
+3. Typescript is used to track interface of the application.
+4. Routs are created with help of react router dom library.
+5. Locals are done with help of i18n library
 
 ### `How to run it.`
 
