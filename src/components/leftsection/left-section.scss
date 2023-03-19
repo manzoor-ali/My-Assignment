@@ -1,0 +1,94 @@
+.left-section {
+  border-radius: 20px;
+
+  padding: 20px;
+  h3 {
+    font-size: 20px;
+  }
+  .proceed-form-btn {
+    text-align: right;
+    button {
+      background: #019688;
+      border: #019688;
+      &:hover {
+        background: #019688;
+        border: #019688;
+      }
+      &:focus {
+        background: #019688;
+        border: #019688;
+      }
+      &:active {
+        background: #019688;
+        border: #019688;
+      }
+    }
+  }
+
+  .dynamic-form-wrapper {
+    .field-wraper {
+      position: relative;
+
+      label {
+        margin-top: 10px;
+      }
+      input {
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid #999;
+
+        padding: 6px;
+      }
+      select {
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid #999;
+        min-height: 36px;
+
+        padding: 6px;
+      }
+      .checkbox-wrapper {
+        width: 100%;
+        input {
+          width: auto;
+          margin-right: 10px;
+        }
+      }
+    }
+    .error-border {
+      border: 1px solid red !important;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+      @media (min-width: 1199px) {
+        // apply style on screens with width >= 768px
+        position: absolute;
+        left: 100%;
+        width: 220px;
+        top: 30px;
+        line-height: 20px;
+
+        margin-left: 30px;
+      }
+    }
+    .small-desc {
+      font-size: 11px;
+      color: #7e7e7e;
+      padding-top: 4px;
+    }
+    .calendar-icon-right {
+      position: absolute;
+      left: 100%;
+      z-index: 99;
+      top: 38px;
+      margin-left: 12px;
+      img {
+        width: 20px;
+      }
+      @media (max-width: 993px) {
+        display: none;
+      }
+    }
+  }
+}

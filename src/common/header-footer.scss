@@ -1,0 +1,34 @@
+.header {
+  background: #000;
+  color: #fff;
+  padding: 10px;
+  padding-bottom: "5px";
+  h1 {
+    font-size: 25px;
+  }
+  p {
+    padding-top: 5px;
+  }
+  .drop-down-toggle {
+    color: #fff;
+    background: transparent;
+    border: none;
+    &:after {
+      display: none;
+    }
+    & .show {
+      background: transparent !important;
+      border: 0px;
+      outline: 0px;
+    }
+    img {
+      color: #fff;
+      width: 15px;
+    }
+  }
+}
+.footer-wrapper {
+  background-color: rgb(245, 245, 245);
+  padding: 20px;
+  font-size: 13px;
+}

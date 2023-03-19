@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+# Getting Started with Create Dynamic form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project has two parts one is dynamic form generation in react and type script and there is a server folder which has node.js server to 
+serve files. Please make sure you have switched to node v16.14.0.
 
 ## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+In the project directory, you can run: node index.js to serve server for you server will run on http://localhost:3000 by defaul. Before running this project you have to navigate to server folder and you should have to run npm install cammand which will download the required libraries to run node.js backend server.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `Mock server api end points`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Once you will run the server you have access to following apis:
 
-### `npm test`
+1. http://localhost:3000/login
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Login api will assign a JWT token based on the request and all other apis will attach this token to the api call as a barer tokem.
 
-### `npm run build`
+2. http://localhost:3000/getFormJson
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This end point will automatically provide a json that is required to generate the dynamic form.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. http://localhost:3000/submit
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Once user will fill the form he can submit the data as a payload it is post request.
 
-### `npm run eject`
+4. http://localhost:3000/getdata
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Get data api request can retrieve the data that is submitted by the user.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `Dynamic form APP`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This app is fully designed to generate the form based on the json provided by the server.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+There is 3 main parts of the dynamic form one is making input fields based on json provided by the server.
+Validations on input fileds are done by Yup library which is very poplular and powerful for applying validations.
+The skeleton of the form is crearted with help of Formik which is very very powerful and usefull for this kind of work.
+Typescript is used to track interface of the application.
+Routs are created with help of react router dom library.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `How to run it.`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Navigate to the root directory of this app and run npm install cammand. This cammand will install a required libraries run this application.
+
+Once this app is up and running you will see the login page. Please input the following username and password.
+
+username: test@test.com
+password: test
+
+### `Tests`
+
+Fort unite test please run the below cammand to  run the tests.
+
+npm test
+

@@ -1,0 +1,225 @@
+{
+  "id": 1,
+  "main": [
+    {
+      "colors": {
+        "backgroundColor": "#f5f5f5"
+      },
+      "items": {
+        "button1": {
+          "action": {
+            "id": "0",
+            "steps": [
+              {
+                "backButton": null,
+                "description": "Veuillez remplir le formulaire ci-dessous pour inscrire un employé",
+                "footer": "<i>Si vous avez besoin d'aide, veuillez nous envoyer un e-mail </i>",
+                "header": "",
+                "id": 10,
+                "items": [
+                  {
+                    "code": "100",
+                    "description": "",
+                    "form": {
+                      "groups": [
+                        {
+                          "description": "",
+                          "fields": [
+                            {
+                              "dateType": "1",
+                              "description": "Ce champ doit être caché",
+                              "format": "",
+                              "hidden": true,
+                              "maxDate": null,
+                              "minDate": null,
+                              "name": "dateCompleted",
+                              "readOnly": false,
+                              "required": false,
+                              "time": false,
+                              "title": "Rendez-vous complet",
+                              "type": "4",
+                              "value": ""
+                            },
+                            {
+                              "description": "",
+                              "hidden": false,
+                              "maxLength": 20,
+                              "minLength": 3,
+                              "name": "firstname",
+                              "placeholder": "George",
+                              "readOnly": false,
+                              "required": true,
+                              "title": "Prénom",
+                              "type": "1",
+                              "value": ""
+                            },
+                            {
+                              "description": "",
+                              "hidden": false,
+                              "maxLength": 20,
+                              "minLength": 3,
+                              "name": "lastname",
+                              "placeholder": "Papadopoulos",
+                              "readOnly": false,
+                              "required": true,
+                              "title": "Nom de famille",
+                              "type": "1",
+                              "value": ""
+                            },
+                            {
+                              "description": "",
+                              "name": "jobTitle",
+                              "readOnly": false,
+                              "required": true,
+                              "title": "Titre d'emploi",
+                              "type": "3",
+                              "value": "",
+                              "values": [
+                                {
+                                  "key": "lead",
+                                  "value": "Chef d'équipe"
+                                },
+                                {
+                                  "key": "dev",
+                                  "value": "Ingénieur logiciel"
+                                },
+                                {
+                                  "key": "qa",
+                                  "value": "Tester"
+                                }
+                              ]
+                            },
+                            {
+                              "dateType": "6",
+                              "description": "",
+                              "format": "dd MMM yyyy",
+                              "maxDate": "2004-12-31T00:00:00+03:00",
+                              "minDate": null,
+                              "name": "birthday",
+                              "readOnly": false,
+                              "required": false,
+                              "time": false,
+                              "title": "Anniversaire",
+                              "type": "4",
+                              "value": ""
+                            },
+                            {
+                              "calculated": false,
+                              "description": "",
+                              "maxValue": 8000,
+                              "minValue": 800,
+                              "name": "monthlySalary",
+                              "readOnly": false,
+                              "required": true,
+                              "round": false,
+                              "title": "Salaire mensuel",
+                              "type": "5",
+                              "value": ""
+                            },
+                            {
+                              "calculated": true,
+                              "description": "",
+                              "maxValue": 60000,
+                              "minValue": 0,
+                              "name": "annualSalary",
+                              "readOnly": true,
+                              "required": false,
+                              "round": false,
+                              "title": "Salaire annuel",
+                              "type": "5",
+                              "value": "{{ 100.monthlySalary }} * 12"
+                            },
+                            {
+                              "description": "",
+                              "name": "referred",
+                              "readOnly": false,
+                              "required": false,
+                              "title": "Parrainé?",
+                              "type": "2",
+                              "value": ""
+                            },
+                            {
+                              "description": "Remplissez tout ce que vous voulez que nous sachions",
+                              "hidden": false,
+                              "maxLength": 10000000,
+                              "minLength": 0,
+                              "name": "notes",
+                              "placeholder": null,
+                              "readOnly": false,
+                              "required": false,
+                              "title": "Remarques",
+                              "type": "1",
+                              "value": ""
+                            }
+                          ],
+                          "title": ""
+                        }
+                      ]
+                    },
+                    "formId": "TestForm",
+                    "title": "",
+                    "type": "form"
+                  }
+                ],
+                "nextButton": {
+                  "action": {
+                    "transitions": [
+                      {
+                        "condition": null,
+                        "priority": 0,
+                        "to": 20
+                      }
+                    ],
+                    "type": "submit"
+                  },
+                  "title": "Soumettre",
+                  "type": "button"
+                },
+                "title": "Inscrire un nouvel employé"
+              },
+              {
+                "backButton": null,
+                "description": "Votre formulaire a été soumis avec succès !",
+                "footer": null,
+                "header": null,
+                "id": 20,
+                "items": [
+                  {
+                    "body": "<p>{{ 100.firstname }} {{ 100.lastname }} a été ajouté !</p>",
+                    "description": "",
+                    "title": "",
+                    "type": "html"
+                  }
+                ],
+                "nextButton": null,
+                "title": "Merci!"
+              }
+            ]
+          },
+          "title": "Remplissez maintenant",
+          "type": "button"
+        },
+        "description": "Remplir un formulaire pour inscrire un nouvel employé",
+        "title": "Formulaire d'inscription des employés"
+      },
+      "layoutId": 1,
+      "order": 8
+    }
+  ],
+  "pageDesc": "",
+  "pageTitle": "Hi,",
+  "side": [
+    {
+      "colors": {
+        "backgroundColor": "#f5f5f5"
+      },
+      "items": {
+        "description": "<p><b>Londres</b><br/>4 Felstead Gardens Cubitt Town<br/>E14 3BS Londres, Royaume-Uni<br/>Tél : +44 2 081237407</p><p><b>Athènes </b><br/>1 Estias Str. & 73-75 Mesogion Av,<br/>115 26, Athènes, Grèce<br/>Tél : +30 210 7450300</p>",
+
+        "title": "Bonjor!"
+      },
+      "layoutId": 100,
+      "order": 1
+    }
+  ]
+}
