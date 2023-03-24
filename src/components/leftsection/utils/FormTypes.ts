@@ -2,7 +2,7 @@ export interface FieldData {
   name: string;
   type: string;
   title: string;
-  value: string;
+  value?: string;
   description?: string;
   label?: string;
   hidden?: boolean;

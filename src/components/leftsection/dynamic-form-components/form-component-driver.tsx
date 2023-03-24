@@ -39,5 +39,6 @@ export const RenderFormField = (field: FieldData) => {
       <MonthlySalary key={field.name} fieldData={field} label={field.title} />
     );
   }
+
   return null;
 };

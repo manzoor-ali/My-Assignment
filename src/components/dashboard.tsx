@@ -76,7 +76,7 @@ export default function Dashboard() {
                 }}
               />
               <Row>
-                <Col lg="7">
+                <Col lg="9">
                   <LeftSection
                     mainData={formJson?.main as FormJsonTypes.RootObject[]}
                     data-testid="left-section"

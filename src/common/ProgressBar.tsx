@@ -1,31 +1,28 @@
 import React from "react";
 import "./header-footer.scss";
+import { FormJsonTypes } from "../components/interface/FormJson";
 
-interface ProgressBarSteps {
-  isformvisible: boolean;
-  isformsubmitted: boolean;
-}
 interface ProgressBarProps {
-  steps: ProgressBarSteps;
+  formStepNumber: number;
+  allSteps: FormJsonTypes.Step[];
 }
 
-const ProgressBar: React.FC<ProgressBarProps> = ({ steps }) => {
-  console.log(steps);
+const ProgressBar: React.FC<ProgressBarProps> = ({
+  formStepNumber,
+  allSteps,
+}) => {
   return (
     <>
       <div className="progressbar">
-        <div
-          className={`inner-steps ${steps.isformvisible ? "completed" : ""}`}
-        ></div>
-        <div
-          className={`inner-steps ${
-            !steps.isformvisible && !steps.isformsubmitted ? "completed" : ""
-          }`}
-        ></div>
-
-        <div
-          className={`inner-steps ${steps.isformsubmitted ? "completed" : ""}`}
-        ></div>
+        {allSteps.map((value: FormJsonTypes.Step, index: number) => {
+          return (
+            <div
+              className={`inner-steps  ${
+                index <= formStepNumber ? "active" : ""
+              }`}
+            ></div>
+          );
+        })}
       </div>
     </>
   );

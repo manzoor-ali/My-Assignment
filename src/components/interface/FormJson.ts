@@ -34,7 +34,7 @@ export declare module FormJsonTypes {
 
   export interface Group {
     description: string;
-    fields?: Field[];
+    fields: Field[];
     title: string;
   }
 
@@ -75,7 +75,7 @@ export declare module FormJsonTypes {
     footer: string;
     header?: string;
     id?: number;
-    items?: Item[];
+    items: Item[];
     nextButton?: NextButton;
     title?: string;
   }
@@ -95,11 +95,12 @@ export declare module FormJsonTypes {
     button1?: Button1;
     description: string;
     title: string;
+    [key: string]: any;
   }
 
   export interface RootObject {
     colors?: Colors;
-    items?: Items;
+    items: Items;
     layoutId?: number;
     order?: number;
   }
@@ -132,4 +133,17 @@ export declare module FormJsonTypes {
     side?: SideLayoutItem;
     main: FormJsonTypes.RootObject[];
   }
+}
+
+export interface Button {
+  action: {
+    transitions: {
+      condition: any;
+      priority: number;
+      to: number;
+    }[];
+    type: string;
+  };
+  title: string;
+  type: "button" | "submit" | "reset";
 }

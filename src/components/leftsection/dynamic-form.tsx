@@ -6,42 +6,61 @@ import { Col, Row } from "react-bootstrap";
 import { FieldData } from "./utils/FormTypes";
 import axios from "axios";
 import { EndpointConfig } from "../../end-point-config";
+import { FormJsonTypes, Button } from "../interface/FormJson";
+import ButtonComponent from "./dynamic-form-components/form-components/buttons-component";
 
 interface Props {
-  fromFieldData: FieldData[];
-  formSubmittedCallBack: (formData: boolean) => void;
+  fromFieldData: FormJsonTypes.Step;
+  goToStep: (arg0: string) => void;
 }
 
-type FormData = {
-  dateCompleted: string; // assuming this is a UTC timestamp in ISO format
+type submittionFormData = {
+  dateCompleted: string;
   firstname: string;
   lastname: string;
   jobTitle: string;
-  birthday: string; // assuming this is a UTC timestamp in ISO format
-  monthlySalary: string; // assuming this is a string representation of a number
+  birthday: string;
+  monthlySalary: string;
   annualSalary: number;
   referred: boolean;
   notes: string;
 };
 
-const DynamicForm: React.FC<Props> = ({
-  fromFieldData,
-  formSubmittedCallBack,
-}) => {
+const DynamicForm: React.FC<Props> = ({ fromFieldData, goToStep }) => {
   const initialValues: {
     [key: string]: object | string | number | boolean | null | undefined;
   } = {};
-  if (fromFieldData) {
-    fromFieldData.forEach((field) => {
-      initialValues[field.name] = field.value ?? "";
-    });
-  }
 
-  async function postFormData(formData: FormData): Promise<void> {
+  const {
+    items: [
+      {
+        form: {
+          groups: [{ fields }],
+        },
+      },
+    ],
+    nextButton,
+    backButton,
+    title,
+    description,
+  }: FormJsonTypes.Step = fromFieldData || {};
+
+  React.useEffect(() => {
+    if (fromFieldData) {
+      fromFieldData?.items[0].form.groups[0].fields.forEach((field) => {
+        initialValues[field.name] = field.value ?? "";
+      });
+    }
+    // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function postsubmittionFormData(
+    submittionformData: submittionFormData,
+  ): Promise<void> {
     try {
       const response = await axios.post(
         `${EndpointConfig.url}${EndpointConfig.submit}`,
-        formData,
+        submittionformData,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -49,7 +68,7 @@ const DynamicForm: React.FC<Props> = ({
           },
         },
       );
-      formSubmittedCallBack(true);
+      goToStep("next");
     } catch (error) {
       console.log(error);
     }
@@ -57,28 +76,34 @@ const DynamicForm: React.FC<Props> = ({
 
   return (
     <div>
+      <h4>{title}</h4>
+      <p>{description}</p>
       <Formik
         initialValues={initialValues as unknown as FieldData}
-        validationSchema={generateValidationSchema(fromFieldData)}
+        validationSchema={generateValidationSchema(fields as FieldData[])}
         onSubmit={(values, actions) => {
           actions.setSubmitting(false);
-          postFormData(values as unknown as FormData);
+          postsubmittionFormData(values as unknown as submittionFormData);
         }}
       >
         {(props: FormikProps<FieldData>) => (
           <Form>
             <Row>
               <Col lg="8" className="dynamic-form-wrapper">
-                {fromFieldData.map((field: FieldData) =>
-                  RenderFormField(field),
+                {fields.map((fieldData: FormJsonTypes.Field) =>
+                  RenderFormField(fieldData as FieldData),
                 )}
               </Col>
+              {nextButton || backButton ? (
+                <ButtonComponent
+                  formikPropsData={props as FormikProps<FieldData>}
+                  nextButtonData={nextButton as Button}
+                  backButtonData={backButton as Button}
+                />
+              ) : (
+                ""
+              )}
             </Row>
-            <div className="proceed-form-btn">
-              <button type="submit" className="btn btn-primary mt-4 m-lg-3">
-                Submit
-              </button>
-            </div>
           </Form>
         )}
       </Formik>
