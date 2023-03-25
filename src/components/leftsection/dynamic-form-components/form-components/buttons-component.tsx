@@ -32,6 +32,12 @@ const ButtonComponent: React.FC<Props> = ({
                   goToStep("back");
                 }
               }}
+              disabled={
+                formikPropsData
+                  ? Boolean(formikPropsData.isSubmitting) ||
+                    Boolean(!formikPropsData.isValid)
+                  : false
+              }
             >
               {backButtonData.title}
             </button>

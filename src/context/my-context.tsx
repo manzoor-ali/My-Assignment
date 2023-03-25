@@ -1,6 +1,6 @@
 import React, { createContext, useState, ReactNode } from "react";
 
-interface MyContextType {
+interface MonthlySalaryContextType {
   monthlySalaryValue: number | null;
   setMyMonthlySalaryValue: (newValue: number | null) => void;
 }
@@ -9,7 +9,7 @@ interface MyProviderProps {
   children: ReactNode;
 }
 
-export const MyContext = createContext<MyContextType>({
+export const MyContext = createContext<MonthlySalaryContextType>({
   monthlySalaryValue: null,
   setMyMonthlySalaryValue: () => {},
 });
@@ -23,7 +23,7 @@ export const MyProvider: React.FC<MyProviderProps> = ({ children }) => {
     setmonthlySalaryValue(newValue);
   };
 
-  const contextValue: MyContextType = {
+  const contextValue: MonthlySalaryContextType = {
     monthlySalaryValue,
     setMyMonthlySalaryValue,
   };

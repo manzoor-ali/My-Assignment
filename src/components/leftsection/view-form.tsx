@@ -24,6 +24,7 @@ export default function ViewForm() {
 
   React.useEffect(() => {
     retrieveForm();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function retrieveForm(): Promise<void> {

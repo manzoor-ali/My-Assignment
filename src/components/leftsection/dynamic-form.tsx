@@ -12,6 +12,7 @@ import ButtonComponent from "./dynamic-form-components/form-components/buttons-c
 interface Props {
   fromFieldData: FormJsonTypes.Step;
   goToStep: (arg0: string) => void;
+  formStepNumber: number;
 }
 
 type submittionFormData = {
@@ -26,7 +27,11 @@ type submittionFormData = {
   notes: string;
 };
 
-const DynamicForm: React.FC<Props> = ({ fromFieldData, goToStep }) => {
+const DynamicForm: React.FC<Props> = ({
+  fromFieldData,
+  goToStep,
+  formStepNumber,
+}) => {
   const initialValues: {
     [key: string]: object | string | number | boolean | null | undefined;
   } = {};
@@ -45,14 +50,16 @@ const DynamicForm: React.FC<Props> = ({ fromFieldData, goToStep }) => {
     description,
   }: FormJsonTypes.Step = fromFieldData || {};
 
+  const formikRef = React.useRef<FormikProps<FieldData>>(null);
+
   React.useEffect(() => {
-    if (fromFieldData) {
-      fromFieldData?.items[0].form.groups[0].fields.forEach((field) => {
+    if (fields || formStepNumber) {
+      fields.forEach((field) => {
         initialValues[field.name] = field.value ?? "";
       });
     }
-    // eslint-disable-line react-hooks/exhaustive-deps
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fields, formStepNumber]);
 
   async function postsubmittionFormData(
     submittionformData: submittionFormData,
@@ -64,10 +71,12 @@ const DynamicForm: React.FC<Props> = ({ fromFieldData, goToStep }) => {
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
+            FormName: `step-number-${formStepNumber + 1}`,
             "Content-Type": "application/json",
           },
         },
       );
+      formikRef.current?.resetForm();
       goToStep("next");
     } catch (error) {
       console.log(error);
@@ -85,6 +94,8 @@ const DynamicForm: React.FC<Props> = ({ fromFieldData, goToStep }) => {
           actions.setSubmitting(false);
           postsubmittionFormData(values as unknown as submittionFormData);
         }}
+        innerRef={formikRef}
+        enableReinitialize={true}
       >
         {(props: FormikProps<FieldData>) => (
           <Form>

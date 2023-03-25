@@ -20,6 +20,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
               className={`inner-steps  ${
                 index <= formStepNumber ? "active" : ""
               }`}
+              key={index}
             ></div>
           );
         })}

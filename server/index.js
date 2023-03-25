@@ -73,9 +73,9 @@ app.post("/submit", (req, res) => {
 
   try {
     const decodedToken = jwt.verify(token, secretKey);
-
     const submittedData = req.body;
-    const fileName = `${authHeader}.json`;
+    const formName = req.headers.formname;
+    const fileName = `${formName}.json`;
     fs.writeFile(fileName, JSON.stringify(submittedData), (err) => {
       if (err) {
         console.error(err);
@@ -106,15 +106,48 @@ app.get("/getdata", (req, res) => {
   try {
     const decodedToken = jwt.verify(token, secretKey);
 
-    const fileName = `${authHeader}.json`;
-    fs.readFile(fileName, (err, data) => {
+    const dirPath = "./"; // replace with actual directory path
+    const filePattern = "step-number-*.json";
+
+    fs.readdir(dirPath, (err, files) => {
       if (err) {
         console.error(err);
         res.status(500).send("Error while reading data");
-      } else {
-        const submittedData = JSON.parse(data);
-        res.json(submittedData);
+        return;
       }
+
+      const data = {};
+      const filePromises = [];
+
+      files.forEach((file) => {
+        if (file.startsWith("step-number-")) {
+          filePromises.push(
+            new Promise((resolve, reject) => {
+              const filePath = `${dirPath}${file}`;
+              fs.readFile(filePath, (err, fileData) => {
+                if (err) {
+                  console.error(err);
+                  reject(err);
+                } else {
+                  const jsonData = JSON.parse(fileData);
+                  Object.assign(data, jsonData);
+                  resolve();
+                }
+              });
+            }),
+          );
+        }
+      });
+
+      Promise.all(filePromises)
+        .then(() => {
+          console.log(data);
+          res.json(data);
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).send("Error while reading data");
+        });
     });
   } catch (err) {
     res.status(401).json({ error: "Invalid token" });

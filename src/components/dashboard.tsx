@@ -18,7 +18,7 @@ export default function Dashboard() {
       navigate("/login");
     }
     fetchFormData("en");
-  }, []);
+  }, [navigate]);
 
   const [loading, setLoading] = React.useState(true);
   const [formJson, setFormJson] =

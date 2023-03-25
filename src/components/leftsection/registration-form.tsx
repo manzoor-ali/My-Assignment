@@ -4,14 +4,19 @@ import DynamicForm from "./dynamic-form";
 import FillFormMessage from "./welcome-message";
 import ThanksForSubmissionMessage from "./thanks-for-submittion-message";
 import ProgressBar from "../../common/ProgressBar";
+import { addStepNumberToUrlParam } from "./helpers/addStepNumberToUrlParam";
+import { useStepNumberFromQueryParam } from "./helpers/useStepNumberFromQueryParam";
 
 interface Props {
   formData: FormJsonTypes.RootObject;
 }
 
 const Registrationform: React.FC<Props> = ({ formData }) => {
-  const [formStepNumber, setfromStepNumber] = React.useState(0);
-  const [showWelcomeMessage, setshowWelcomeMessage] = React.useState(true);
+  const [formStepNumber, setfromStepNumber] = React.useState<number>(0);
+  const [showWelcomeMessage, setshowWelcomeMessage] =
+    React.useState<boolean>(true);
+
+  useStepNumberFromQueryParam(setfromStepNumber);
 
   function displayFormCallback(): void {
     setshowWelcomeMessage(false);
@@ -28,8 +33,10 @@ const Registrationform: React.FC<Props> = ({ formData }) => {
   function goToStep(stepName: string): void {
     if (stepName === "next") {
       setfromStepNumber(formStepNumber + 1);
+      addStepNumberToUrlParam(formStepNumber + 1);
     } else if (stepName === "back") {
       setfromStepNumber(formStepNumber - 1);
+      addStepNumberToUrlParam(formStepNumber - 1);
     }
   }
 
@@ -55,6 +62,7 @@ const Registrationform: React.FC<Props> = ({ formData }) => {
             ] as FormJsonTypes.Step
           }
           goToStep={goToStep}
+          formStepNumber={formStepNumber}
         />
       ) : formItem === "html" ? (
         <ThanksForSubmissionMessage

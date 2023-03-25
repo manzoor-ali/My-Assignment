@@ -12,7 +12,7 @@
             "steps": [
               {
                 "backButton": null,
-                "description": "Please fill the form below to register an employee",
+                "description": "What is your level of education and what are your interests?",
                 "footer": "<i>If you need any help please email us</i>",
                 "header": "",
                 "id": 10,
@@ -176,6 +176,140 @@
                   "type": "button"
                 },
                 "title": "Register a new employee"
+              },
+              {
+                "backButton": null,
+                "description": "Please fill the below form to tell about your education level.",
+                "footer": "<i>If you need any help please email us</i>",
+                "header": "",
+                "id": 10,
+                "items": [
+                  {
+                    "code": "100",
+                    "description": "",
+                    "form": {
+                      "groups": [
+                        {
+                          "description": "",
+                          "fields": [
+                            {
+                              "dateType": "1",
+                              "description": "This field should be hidden",
+                              "format": "",
+                              "hidden": true,
+                              "maxDate": null,
+                              "minDate": null,
+                              "name": "dateCompletedEcidationStep",
+                              "readOnly": false,
+                              "required": false,
+                              "time": false,
+                              "title": "Date completed",
+                              "type": "4",
+                              "value": ""
+                            },
+                            {
+                              "description": "",
+                              "hidden": false,
+                              "maxLength": 20,
+                              "minLength": 3,
+                              "name": "Education Level",
+                              "placeholder": "High School",
+                              "readOnly": false,
+                              "required": true,
+                              "title": "Education Level",
+                              "type": "1",
+                              "value": ""
+                            },
+                            {
+                              "description": "",
+                              "hidden": false,
+                              "maxLength": 20,
+                              "minLength": 3,
+                              "name": "College Name",
+                              "placeholder": "Ox Ford",
+                              "readOnly": false,
+                              "required": true,
+                              "title": "College Name",
+                              "type": "1",
+                              "value": ""
+                            },
+
+                            {
+                              "description": "",
+                              "name": "Selecte Subject",
+                              "readOnly": false,
+                              "required": true,
+                              "title": "Selected Subject",
+                              "type": "3",
+                              "value": "",
+                              "values": [
+                                {
+                                  "key": "english",
+                                  "value": "English"
+                                },
+                                {
+                                  "key": "science",
+                                  "value": "Science"
+                                },
+                                {
+                                  "key": "physics",
+                                  "value": "Physics"
+                                }
+                              ]
+                            },
+                            {
+                              "dateType": "6",
+                              "description": "",
+                              "format": "dd MMM yyyy",
+                              "maxDate": "2004-12-31T00:00:00+03:00",
+                              "minDate": null,
+                              "name": "Graduation Date",
+                              "readOnly": false,
+                              "required": false,
+                              "time": false,
+                              "title": "Graduation Date",
+                              "type": "4",
+                              "value": ""
+                            },
+
+                            {
+                              "description": "Fill anything else you want us to know",
+                              "hidden": false,
+                              "maxLength": 10000000,
+                              "minLength": 0,
+                              "name": "details",
+                              "placeholder": null,
+                              "readOnly": false,
+                              "required": false,
+                              "title": "Details",
+                              "type": "1",
+                              "value": ""
+                            }
+                          ],
+                          "title": ""
+                        }
+                      ]
+                    },
+                    "formId": "TestForm",
+                    "title": "",
+                    "type": "form"
+                  }
+                ],
+                "nextButton": {
+                  "action": {
+                    "transitions": [
+                      {
+                        "condition": null,
+                        "priority": 0,
+                        "to": 20
+                      }
+                    ],
+                    "type": "submit"
+                  },
+                  "title": "Submit",
+                  "type": "button"
+                },
+                "title": "Please tell us about your education level."
               },
               {
                 "backButton": null,
